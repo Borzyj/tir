@@ -18,7 +18,13 @@ target_height = 100
 target_x = random.randint(0, SCREEN_WIDTH - target_width)
 target_y = random.randint(0, SCREEN_HEIGHT - target_height)
 
+font = pygame.font.Font(None, 35)
+
+text_x = 10
+text_y = 10
+
 color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+score = 0
 
 running = True
 while running:
@@ -31,7 +37,11 @@ while running:
             if (target_x < mouse_x < target_x + target_width) and (target_y < mouse_y < target_y + target_height):
                 target_x = random.randint(0, SCREEN_WIDTH - target_width)
                 target_y = random.randint(0, SCREEN_HEIGHT - target_height)
+                score += 1
+
     screen.blit(target_image, (target_x, target_y))
+    text_surf = font.render(str(score), True, (255, 255, 255))
+    screen.blit(text_surf, (text_x, text_y))
     pygame.display.update()
 
 pygame.quit()
